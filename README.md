@@ -1,5 +1,3 @@
-# terraform-oke-argo-workflow
-
 # Terraform OKE with Argo Workflows
 
 This repository contains Terraform code to deploy and configure an Argo Workflows environment on Oracle Cloud Infrastructure (OCI) using Oracle Kubernetes Engine (OKE). It simplifies the setup process for orchestrating Kubernetes-native workflows.
