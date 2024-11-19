@@ -45,7 +45,7 @@ For a streamlined deployment, you can use Oracle Cloud Infrastructure’s Resour
 
 1. Click the button below to deploy directly to OCI Resource Manager.
 
-   [![Deploy to OCI](https://oci-resourcemanager-deploy-button-url)](https://console.oracle.com/resourcemanager/stacks/create?region=us-ashburn-1&stack_source=terraform&source_uri=https://github.com/dranicu/terraform-oke-argo-workflow)
+   [![Deploy to OCI](https://oci-resourcemanager-plugin.plugins.oci.oraclecloud.com/latest/deploy-to-oracle-cloud.svg)](https://cloud.oracle.com/resourcemanager/stacks/create?zipUrl=https://ocisateam.objectstorage.eu-frankfurt-1.oci.customer-oci.com/p/uTKEi4EECQYY1bjCJpn2-nVyYQINjeehjugkc5CdnCwx2NVtfkdkym26-h4OEXtX/n/ocisateam/b/code-zips/o/terraform-oke-argo-workflow-main.zip)
 
 2. Sign in to your OCI account and follow the prompts to configure the stack.
 
