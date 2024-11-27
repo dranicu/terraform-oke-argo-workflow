@@ -101,6 +101,11 @@ variableGroups:
     visible: true
     variables:
       - deploy_argo_workflows
+      - argo_workflows_values_override
+      - deploy_nginx
+      - nginx_user_values_override
+      - deploy_cert_manager
+      - cert_manager_user_values_override
 
 variables:
   create_iam_resources:
@@ -344,6 +349,32 @@ variables:
     title: Helm | Argo Workflows helm chart values override
     description: Override the values for the <a href="https://github.com/argoproj/argo-helm/blob/main/charts/argo-workflows/values.yaml">Argo Workflows Helm chart</a> .
     visible: ${deploy_argo_workflows}
+  
+  deploy_nginx:
+    type: boolean
+    default: true
+    title: Helm | Deploy Nginx ingress controller
+    description: Nginx ingress controller is used to expose the OKE services to the user.
+    visible: true
+
+  nginx_user_values_override:
+    type: file
+    title: Helm | Nginx Ingress Controller helm chart values override
+    description: Override the values for the <a href="https://github.com/kubernetes/ingress-nginx/blob/main/charts/ingress-nginx/README.md">Nginx Ingress Controller Helm chart</a> .
+    visible: ${deploy_nginx}
+  
+  deploy_cert_manager:
+    type: boolean
+    default: true
+    title: Helm | Deploy Cert-Manager
+    description: Cert-manager is used to generate TLS certificates for the ingress resources.
+    visible: true
+
+  cert_manager_user_values_override:
+    type: file
+    title: Helm | Cert-Manager helm chart values override
+    description: Override the values for the <a href="https://artifacthub.io/packages/helm/cert-manager/cert-manager">Cert-Manager chart</a> .
+    visible: ${deploy_cert_manager}
 
 outputs:
   bastion:

@@ -19,3 +19,19 @@ data "oci_identity_availability_domains" "ads" {
   compartment_id = var.tenancy_ocid
 }
 
+data "oci_load_balancer_load_balancers" "lbs" {
+
+  compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
+
+  filter {
+    name   = "freeform_tags.state_id"
+    values = [local.state_id]
+  }
+
+  filter {
+    name   = "freeform_tags.application"
+    values = ["nginx"]
+  }
+
+  depends_on = [module.nginx]
+}

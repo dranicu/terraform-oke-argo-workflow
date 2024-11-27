@@ -137,3 +137,10 @@ output "operator" {
 output "ssh_to_operator" {
   value = "%{if var.create_operator_and_bastion}${module.oke.ssh_to_operator}%{else}bastion and operator hosts not created.%{endif}"
 }
+
+output "argo_url" {
+  value = (var.deploy_nginx && var.deploy_argo_workflows && length(coalesce(data.oci_load_balancer_load_balancers.lbs.load_balancers, [])) > 0 ?
+    "https://argo.${data.oci_load_balancer_load_balancers.lbs.load_balancers[0].ip_addresses[0]}.io" :
+    ""
+  )
+}
