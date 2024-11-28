@@ -26,7 +26,6 @@ variable "tenancy_ocid" {
   description = "The tenancy id of the OCI Cloud Account in which to create the resources."
 }
 
-
 ### OKE Module - Common Variables
 variable "create_operator_and_bastion" {
   type        = bool

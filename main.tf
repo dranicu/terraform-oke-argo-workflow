@@ -126,6 +126,24 @@ module "oke" {
   output_detail = true
 }
 
+resource "oci_objectstorage_bucket" "medical_images_raw" {
+  namespace      = var.tenancy_ocid
+  name           = "medical-images-raw"
+  compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
+}
+
+resource "oci_objectstorage_bucket" "medical_images_processed" {
+  namespace      = var.tenancy_ocid
+  name           = "medical-images-processed"
+  compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
+}
+
+resource "oci_objectstorage_bucket" "trained_model" {
+  namespace      = var.tenancy_ocid
+  name           = "trained-model"
+  compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
+}
+
 output "bastion" {
   value = "%{if var.create_operator_and_bastion}${module.oke.bastion_public_ip}%{else}bastion host not created.%{endif}"
 }
@@ -140,7 +158,7 @@ output "ssh_to_operator" {
 
 output "argo_url" {
   value = (var.deploy_nginx && var.deploy_argo_workflows && length(coalesce(data.oci_load_balancer_load_balancers.lbs.load_balancers, [])) > 0 ?
-    "https://argo.${data.oci_load_balancer_load_balancers.lbs.load_balancers[0].ip_addresses[0]}.io" :
+    "https://argo.${data.oci_load_balancer_load_balancers.lbs.load_balancers[0].ip_addresses[0]}.nip.io" :
     ""
   )
 }
