@@ -126,20 +126,20 @@ module "oke" {
   output_detail = true
 }
 
-resource "oci_objectstorage_bucket" "medical_images_raw" {
-  namespace      = var.tenancy_ocid
+resource "oci_objectstorage_bucket" "medical_images" {
+  namespace      = data.oci_identity_tenancy.tenant_details.name
   name           = "medical-images-raw"
   compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
 }
 
 resource "oci_objectstorage_bucket" "medical_images_processed" {
-  namespace      = var.tenancy_ocid
+  namespace      = data.oci_identity_tenancy.tenant_details.name
   name           = "medical-images-processed"
   compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
 }
 
 resource "oci_objectstorage_bucket" "trained_model" {
-  namespace      = var.tenancy_ocid
+  namespace      = data.oci_identity_tenancy.tenant_details.name
   name           = "trained-model"
   compartment_id = coalesce(var.compartment_id, var.compartment_ocid)
 }
